@@ -1,4 +1,8 @@
 module SessionsHelper
+  
+  def edit
+    @title = "Edit user"
+  end
 
   def sign_in(user)
     cookies.permanent.signed[:remember_token] = [user.id, user.salt]
@@ -22,6 +26,14 @@ module SessionsHelper
     current_user = nil
   end
 
+  def deny_access
+    redirect_to signin_path, :notice => "Please sign in to access this page."
+  end
+
+  def current_user?(user)
+    user == current_user
+  end
+
   private
 
     def user_from_remember_token
@@ -32,7 +44,5 @@ module SessionsHelper
       cookies.signed[:remember_token] || [nil,nil]
     end
   
-    def deny_access
-      redirect_to signin_path, :notice => "Please sign in to access this page."
-    end
+  
 end
