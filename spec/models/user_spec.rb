@@ -8,11 +8,28 @@ describe User do
       @followed = Factory(:user)
     end
 
+    it "should have a reverse_relationships method" do
+      @user.should respond_to(:reverse_relationships)
+    end
+
+    it "should have followers method" do
+      @user.should respond_to(:followers)
+    end
+
+    it "should include the follower in the followers array" do
+      @user.follow!(@followed)
+      @followed.followers.should include(@user)
+    end
+
+    it "should have a relationships method" do
+      @user.should respond_to(:relationships)
+    end
+  
     it "should have a relationships method" do
       @user.should respond_to(:relationships)
     end
 
-    it "should have a following model" do
+    it "should have a following method" do
       @user.should respond_to(:following)
     end
 
