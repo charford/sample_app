@@ -24,7 +24,7 @@ describe UsersController do
       end
 
       it "should show user following" do
-        get :following, :id => never
+        get :following, :id => @user
         response.should have_selector("a", :href => user_path(@other_user), :content => @other_user.name)
       end
 

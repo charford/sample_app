@@ -27,7 +27,7 @@ describe MicropostsController do
       it "should destroy the micropost" do
         lambda do
           delete :destroy, :id => @micropost
-        end.should change(Micropost, :count).by(1)
+        end.should change(Micropost, :count).by(-1)
       end
     end
   end
